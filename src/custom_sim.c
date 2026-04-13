@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "allocator.h"
+#include "pool.h"
 #include "predictor.h"
 
 #define MAX_OBJECT 10000
@@ -110,9 +111,9 @@ int main()
     printf("  Active at end     : %d\n",  object_count);
 
     printf("\n--- Allocations by object type ---\n");
-    printf("  Particle : %d  (lifetime=3  → slab target)\n",  alloc_by_type[PARTICLE]);
-    printf("  Bullet   : %d  (lifetime=50 → pool target)\n",  alloc_by_type[BULLET]);
-    printf("  Enemy    : %d  (lifetime=500→ malloc target)\n", alloc_by_type[ENEMY]);
+    printf("  Particle : %d  (lifetime=3  -> slab target)\n",  alloc_by_type[PARTICLE]);
+    printf("  Bullet   : %d  (lifetime=50 -> pool target)\n",  alloc_by_type[BULLET]);
+    printf("  Enemy    : %d  (lifetime=500-> malloc target)\n", alloc_by_type[ENEMY]);
 
     printf("\n--- Allocator routing (predictor decisions) ---\n");
     printf("  Routed to slab   : %d  (%.1f%%)\n",
